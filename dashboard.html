@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Dispatch — Restaurant Performance &amp; Delivery Ops</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#12141C;
+    --panel:#1B1E2A;
+    --panel-2:#20242F;
+    --line:#2A2E3D;
+    --text:#F2F1ED;
+    --text-dim:#9296A8;
+    --text-faint:#5C6072;
+    --tangerine:#FF7A45;
+    --tangerine-dim:#5A3626;
+    --mint:#3ED598;
+    --mint-dim:#1F4536;
+    --amber:#F5C563;
+    --red:#FF5F5F;
+    --red-dim:#4A2323;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Space Grotesk', sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .mono{font-family:'IBM Plex Mono', monospace;}
+
+  .wrap{max-width:1180px;margin:0 auto;padding:32px 28px 64px;}
+
+  /* header / ticker */
+  .topbar{
+    display:flex;justify-content:space-between;align-items:flex-end;
+    border-bottom:1px solid var(--line);padding-bottom:18px;margin-bottom:6px;
+  }
+  .brand-eyebrow{
+    font-family:'IBM Plex Mono', monospace;font-size:11px;letter-spacing:.14em;
+    color:var(--tangerine);text-transform:uppercase;margin:0 0 6px;
+  }
+  h1{font-size:26px;font-weight:600;margin:0;letter-spacing:-.01em;}
+  .subtitle{color:var(--text-dim);font-size:13px;margin-top:6px;}
+  .status-pill{
+    font-family:'IBM Plex Mono', monospace;font-size:11px;color:var(--mint);
+    border:1px solid var(--mint-dim);background:var(--mint-dim);
+    padding:5px 10px;border-radius:3px;display:inline-flex;align-items:center;gap:6px;
+  }
+  .status-dot{width:6px;height:6px;border-radius:50%;background:var(--mint);}
+
+  .ticker{
+    display:flex;gap:0;border-bottom:1px solid var(--line);margin-bottom:28px;
+    overflow-x:auto;
+  }
+  .ticker-item{
+    flex:1;min-width:150px;padding:16px 18px;border-right:1px solid var(--line);
+  }
+  .ticker-item:last-child{border-right:none;}
+  .ticker-label{
+    font-family:'IBM Plex Mono', monospace;font-size:10px;color:var(--text-faint);
+    text-transform:uppercase;letter-spacing:.08em;margin:0 0 8px;
+  }
+  .ticker-value{font-size:24px;font-weight:600;margin:0;}
+  .ticker-delta{font-family:'IBM Plex Mono', monospace;font-size:11px;margin-top:4px;}
+  .up{color:var(--mint);}
+  .down{color:var(--red);}
+  .flat{color:var(--text-dim);}
+
+  /* section */
+  .section{margin-bottom:36px;}
+  .section-head{
+    display:flex;justify-content:space-between;align-items:baseline;
+    margin-bottom:14px;
+  }
+  .section-title{font-size:15px;font-weight:600;margin:0;}
+  .section-note{
+    font-family:'IBM Plex Mono', monospace;font-size:11px;color:var(--text-faint);
+  }
+
+  .grid-2{display:grid;grid-template-columns:1.2fr .8fr;gap:20px;}
+  .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+
+  .panel{
+    background:var(--panel);border:1px solid var(--line);border-radius:6px;
+    padding:20px;
+  }
+
+  canvas{max-width:100%;}
+
+  table{width:100%;border-collapse:collapse;font-size:12.5px;}
+  th{
+    text-align:left;font-family:'IBM Plex Mono', monospace;font-size:10px;
+    color:var(--text-faint);text-transform:uppercase;letter-spacing:.06em;
+    padding:0 10px 10px;font-weight:500;border-bottom:1px solid var(--line);
+  }
+  td{padding:9px 10px;border-bottom:1px solid var(--line);color:var(--text-dim);}
+  tr:last-child td{border-bottom:none;}
+  td.num, th.num{text-align:right;font-family:'IBM Plex Mono', monospace;}
+  td.primary{color:var(--text);}
+  .rank-badge{
+    display:inline-block;width:18px;height:18px;line-height:18px;text-align:center;
+    background:var(--panel-2);border-radius:3px;font-family:'IBM Plex Mono', monospace;
+    font-size:10px;color:var(--tangerine);margin-right:8px;
+  }
+  .risk-high{color:var(--red);}
+  .risk-mid{color:var(--amber);}
+  .risk-low{color:var(--mint);}
+  .tag{
+    font-family:'IBM Plex Mono', monospace;font-size:10px;padding:2px 7px;
+    border-radius:3px;display:inline-block;
+  }
+  .tag-high{background:var(--red-dim);color:var(--red);}
+  .tag-mid{background:#3a3320;color:var(--amber);}
+
+  .legend-row{display:flex;gap:16px;margin-bottom:14px;flex-wrap:wrap;}
+  .legend-item{
+    display:flex;align-items:center;gap:6px;font-size:11.5px;color:var(--text-dim);
+    font-family:'IBM Plex Mono', monospace;
+  }
+  .legend-swatch{width:9px;height:9px;border-radius:2px;}
+
+  .foot{
+    margin-top:40px;padding-top:18px;border-top:1px solid var(--line);
+    display:flex;justify-content:space-between;color:var(--text-faint);
+    font-family:'IBM Plex Mono', monospace;font-size:11px;
+  }
+
+  @media (max-width:860px){
+    .grid-2, .grid-3{grid-template-columns:1fr;}
+    .ticker{flex-wrap:wrap;}
+    .ticker-item{min-width:45%;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="topbar">
+    <div>
+      <p class="brand-eyebrow">Ops dispatch // Q1&ndash;Q2 2025</p>
+      <h1>Restaurant performance &amp; delivery ops</h1>
+      <p class="subtitle">6 cities &middot; 180 restaurants &middot; 30,000 orders &middot; SQL + pandas analysis</p>
+    </div>
+    <span class="status-pill"><span class="status-dot"></span>Live feed synced</span>
+  </div>
+
+  <div class="ticker">
+    <div class="ticker-item">
+      <p class="ticker-label">Total orders</p>
+      <p class="ticker-value mono">30,000</p>
+      <p class="ticker-delta up">+126% Jan &rarr; Apr peak</p>
+    </div>
+    <div class="ticker-item">
+      <p class="ticker-label">Avg delivery time</p>
+      <p class="ticker-value mono">35.0<span style="font-size:14px;color:var(--text-dim)">min</span></p>
+      <p class="ticker-delta down">Mumbai slowest &middot; 39.4 min</p>
+    </div>
+    <div class="ticker-item">
+      <p class="ticker-label">Avg order value</p>
+      <p class="ticker-value mono">&#8377;344</p>
+      <p class="ticker-delta flat">Continental highest &middot; &#8377;560</p>
+    </div>
+    <div class="ticker-item">
+      <p class="ticker-label">Peak vs off-peak lag</p>
+      <p class="ticker-value mono">+6.1<span style="font-size:14px;color:var(--text-dim)">min</span></p>
+      <p class="ticker-delta down">Dinner peak slowest window</p>
+    </div>
+    <div class="ticker-item">
+      <p class="ticker-label">Blended churn rate</p>
+      <p class="ticker-value mono">26.1%</p>
+      <p class="ticker-delta down">Delhi NCR highest &middot; 28.0%</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-head">
+      <p class="section-title">Delivery SLA by city</p>
+      <p class="section-note mono">avg_delivery_mins, GROUP BY city</p>
+    </div>
+    <div class="grid-2">
+      <div class="panel">
+        <div style="position:relative;height:280px;">
+          <canvas id="cityDeliveryChart" role="img" aria-label="Bar chart of average delivery time in minutes by city, from Mumbai at 39.4 minutes down to Pune at 28.1 minutes">
+            Average delivery time by city: Mumbai 39.4, Bengaluru 36.1, Delhi NCR 34.6, Chennai 33.5, Hyderabad 31.3, Pune 28.1 minutes.
+          </canvas>
+        </div>
+      </div>
+      <div class="panel">
+        <div style="position:relative;height:280px;">
+          <canvas id="peakChart" role="img" aria-label="Bar chart comparing average delivery time across dinner peak, lunch peak, and off-peak time bands">
+            Delivery time by time band: Dinner peak 37.0 min, Lunch peak 36.8 min, Off-peak 30.9 min.
+          </canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-head">
+      <p class="section-title">Revenue &amp; order value by cuisine</p>
+      <p class="section-note mono">SUM(order_value), GROUP BY cuisine</p>
+    </div>
+    <div class="panel">
+      <div style="position:relative;height:300px;">
+        <canvas id="cuisineChart" role="img" aria-label="Bar chart of total revenue by cuisine type, North Indian highest at 2.7 million rupees, Desserts lowest at 0.56 million">
+          Revenue by cuisine in lakhs: North Indian 27.2, Fast Food 17.1, Biryani 13.2, South Indian 12.3, Chinese 11.7, Continental 10.0, Desserts 5.6.
+        </canvas>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-head">
+      <p class="section-title">Order volume trend, by city</p>
+      <p class="section-note mono">window fn: LAG() OVER (PARTITION BY city ORDER BY month)</p>
+    </div>
+    <div class="panel">
+      <div class="legend-row" id="trendLegend"></div>
+      <div style="position:relative;height:300px;">
+        <canvas id="trendChart" role="img" aria-label="Line chart of monthly order volume for six cities from January to June 2025, showing growth through April then a slight decline">
+          Monthly order counts per city, January through June 2025, generally rising to a peak in March or April then declining slightly.
+        </canvas>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-head">
+      <p class="section-title">Customer churn risk, by city</p>
+      <p class="section-note mono">CTE + LEFT JOIN, 60-day inactivity threshold</p>
+    </div>
+    <div class="grid-2">
+      <div class="panel">
+        <div style="position:relative;height:260px;">
+          <canvas id="churnChart" role="img" aria-label="Bar chart of customer churn rate percentage by city, Delhi NCR highest at 28 percent, Mumbai lowest at 22.5 percent">
+            Churn rate by city: Delhi NCR 28.0%, Chennai 27.8%, Bengaluru 27.0%, Pune 26.5%, Hyderabad 24.5%, Mumbai 22.5%.
+          </canvas>
+        </div>
+      </div>
+      <div class="panel">
+        <p class="section-note mono" style="margin-bottom:10px;">SLA breach leaders &middot; &gt;55 min, min 50 orders</p>
+        <table>
+          <thead><tr><th>Restaurant</th><th class="num">Orders</th><th class="num">Breach rate</th></tr></thead>
+          <tbody id="slaTable"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-head">
+      <p class="section-title">Top restaurants by revenue, per city</p>
+      <p class="section-note mono">window fn: RANK() OVER (PARTITION BY city ORDER BY revenue DESC)</p>
+    </div>
+    <div class="panel">
+      <table id="leaderboardTable">
+        <thead>
+          <tr>
+            <th>#</th><th>Restaurant</th><th>City</th><th>Cuisine</th>
+            <th class="num">Orders</th><th class="num">Revenue</th><th class="num">Rating</th>
+          </tr>
+        </thead>
+        <tbody id="leaderboardBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="foot">
+    <span>dispatch.dashboard &middot; synthetic dataset, 30k orders</span>
+    <span>SQL + pandas &middot; Chart.js render layer</span>
+  </div>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+const DATA = {
+  cityDelivery: [
+    {city:"Mumbai", mins:39.4},{city:"Bengaluru", mins:36.1},{city:"Delhi NCR", mins:34.6},
+    {city:"Chennai", mins:33.5},{city:"Hyderabad", mins:31.3},{city:"Pune", mins:28.1}
+  ],
+  peak: [
+    {band:"Dinner peak", mins:37.0},{band:"Lunch peak", mins:36.8},{band:"Off-peak", mins:30.9}
+  ],
+  cuisine: [
+    {c:"North Indian", rev:2717815},{c:"Fast Food", rev:1708089},{c:"Biryani", rev:1316955},
+    {c:"South Indian", rev:1226514},{c:"Chinese", rev:1174698},{c:"Continental", rev:1000245},
+    {c:"Desserts", rev:562613}
+  ],
+  churn: [
+    {city:"Delhi NCR", pct:28.0},{city:"Chennai", pct:27.8},{city:"Bengaluru", pct:27.0},
+    {city:"Pune", pct:26.5},{city:"Hyderabad", pct:24.5},{city:"Mumbai", pct:22.5}
+  ],
+  trend: {
+    months: ["2025-01","2025-02","2025-03","2025-04","2025-05","2025-06"],
+    series: {
+      "Mumbai":     [592,1093,1510,1588,1403,1338],
+      "Bengaluru":  [506,999,1316,1419,1204,1199],
+      "Delhi NCR":  [465,783,1115,1115,1038,985],
+      "Chennai":    [264,493,636,665,608,589],
+      "Hyderabad":  [285,504,703,755,683,659],
+      "Pune":       [275,509,729,727,638,610]
+    }
+  },
+  sla: [
+    {id:"R1079", orders:197, rate:21.3},{id:"R1111", orders:166, rate:18.1},
+    {id:"R1090", orders:166, rate:18.1},{id:"R1041", orders:157, rate:16.6},
+    {id:"R1138", orders:164, rate:15.9},{id:"R1105", orders:157, rate:14.6}
+  ],
+  leaderboard: [
+    {rank:1, id:"R1081", city:"Pune", cuisine:"Continental", orders:178, rev:101645, rating:4.26},
+    {rank:1, id:"R1125", city:"Delhi NCR", cuisine:"Continental", orders:176, rev:97340, rating:4.19},
+    {rank:1, id:"R1133", city:"Bengaluru", cuisine:"Continental", orders:175, rev:96426, rating:4.25},
+    {rank:1, id:"R1068", city:"Mumbai", cuisine:"Continental", orders:173, rev:95117, rating:4.20},
+    {rank:1, id:"R1067", city:"Hyderabad", cuisine:"Continental", orders:158, rev:88800, rating:4.37},
+    {rank:1, id:"R1001", city:"Chennai", cuisine:"North Indian", orders:206, rev:87875, rating:4.27}
+  ]
+};
+
+const TANGERINE = "#FF7A45";
+const MINT = "#3ED598";
+const AMBER = "#F5C563";
+const RED = "#FF5F5F";
+const TEXT_DIM = "#9296A8";
+const LINE = "#2A2E3D";
+const SERIES = ["#FF7A45","#3ED598","#F5C563","#7B8CFF","#FF5F5F","#B48CFF"];
+
+Chart.defaults.font.family = "'IBM Plex Mono', monospace";
+Chart.defaults.font.size = 11;
+Chart.defaults.color = TEXT_DIM;
+
+const gridOpt = { color: LINE, drawTicks: false };
+
+new Chart(document.getElementById('cityDeliveryChart'), {
+  type: 'bar',
+  data: {
+    labels: DATA.cityDelivery.map(d=>d.city),
+    datasets: [{ data: DATA.cityDelivery.map(d=>d.mins), backgroundColor: TANGERINE, borderRadius: 3, maxBarThickness: 28 }]
+  },
+  options: {
+    responsive:true, maintainAspectRatio:false,
+    plugins:{ legend:{display:false}, title:{display:false} },
+    scales:{
+      y:{ beginAtZero:true, grid:gridOpt, title:{display:true,text:'minutes',color:TEXT_DIM} },
+      x:{ grid:{display:false} }
+    }
+  }
+});
+
+new Chart(document.getElementById('peakChart'), {
+  type: 'bar',
+  data: {
+    labels: DATA.peak.map(d=>d.band),
+    datasets: [{ data: DATA.peak.map(d=>d.mins), backgroundColor: [RED, AMBER, MINT], borderRadius: 3, maxBarThickness: 40 }]
+  },
+  options: {
+    indexAxis:'y',
+    responsive:true, maintainAspectRatio:false,
+    plugins:{ legend:{display:false} },
+    scales:{
+      x:{ beginAtZero:true, grid:gridOpt, title:{display:true,text:'minutes',color:TEXT_DIM} },
+      y:{ grid:{display:false} }
+    }
+  }
+});
+
+new Chart(document.getElementById('cuisineChart'), {
+  type: 'bar',
+  data: {
+    labels: DATA.cuisine.map(d=>d.c),
+    datasets: [{ data: DATA.cuisine.map(d=>Math.round(d.rev/1000)), backgroundColor: TANGERINE, borderRadius: 3, maxBarThickness: 34 }]
+  },
+  options: {
+    responsive:true, maintainAspectRatio:false,
+    plugins:{ legend:{display:false},
+      tooltip:{ callbacks:{ label: (ctx)=> '₹' + ctx.parsed.y.toLocaleString() + 'k revenue' } }
+    },
+    scales:{
+      y:{ beginAtZero:true, grid:gridOpt, title:{display:true,text:'revenue (₹ thousands)',color:TEXT_DIM} },
+      x:{ grid:{display:false}, ticks:{maxRotation:45,autoSkip:false} }
+    }
+  }
+});
+
+const cities = Object.keys(DATA.trend.series);
+document.getElementById('trendLegend').innerHTML = cities.map((c,i)=>
+  `<span class="legend-item"><span class="legend-swatch" style="background:${SERIES[i]}"></span>${c}</span>`
+).join('');
+
+new Chart(document.getElementById('trendChart'), {
+  type: 'line',
+  data: {
+    labels: DATA.trend.months,
+    datasets: cities.map((c,i)=>({
+      label: c,
+      data: DATA.trend.series[c],
+      borderColor: SERIES[i],
+      backgroundColor: SERIES[i],
+      borderWidth: 2,
+      pointRadius: 3,
+      pointBackgroundColor: SERIES[i],
+      tension: 0.25
+    }))
+  },
+  options: {
+    responsive:true, maintainAspectRatio:false,
+    plugins:{ legend:{display:false} },
+    scales:{
+      y:{ beginAtZero:true, grid:gridOpt, title:{display:true,text:'orders / month',color:TEXT_DIM} },
+      x:{ grid:{display:false} }
+    }
+  }
+});
+
+new Chart(document.getElementById('churnChart'), {
+  type: 'bar',
+  data: {
+    labels: DATA.churn.map(d=>d.city),
+    datasets: [{ data: DATA.churn.map(d=>d.pct), backgroundColor: RED, borderRadius: 3, maxBarThickness: 26 }]
+  },
+  options: {
+    indexAxis:'y',
+    responsive:true, maintainAspectRatio:false,
+    plugins:{ legend:{display:false},
+      tooltip:{ callbacks:{ label:(ctx)=> ctx.parsed.x + '% churned' } }
+    },
+    scales:{
+      x:{ beginAtZero:true, grid:gridOpt, title:{display:true,text:'% churned (60-day)',color:TEXT_DIM} },
+      y:{ grid:{display:false} }
+    }
+  }
+});
+
+const slaBody = document.getElementById('slaTable');
+DATA.sla.forEach(r=>{
+  const riskClass = r.rate > 17 ? 'risk-high' : (r.rate > 12 ? 'risk-mid' : 'risk-low');
+  const tagClass = r.rate > 17 ? 'tag-high' : 'tag-mid';
+  slaBody.innerHTML += `<tr>
+    <td class="primary mono">${r.id}</td>
+    <td class="num mono">${r.orders}</td>
+    <td class="num mono ${riskClass}"><span class="tag ${tagClass}">${r.rate}%</span></td>
+  </tr>`;
+});
+
+const lbBody = document.getElementById('leaderboardBody');
+DATA.leaderboard.forEach(r=>{
+  lbBody.innerHTML += `<tr>
+    <td><span class="rank-badge">${r.rank}</span></td>
+    <td class="primary mono">${r.id}</td>
+    <td>${r.city}</td>
+    <td>${r.cuisine}</td>
+    <td class="num mono">${r.orders}</td>
+    <td class="num mono primary">₹${r.rev.toLocaleString()}</td>
+    <td class="num mono">${r.rating}</td>
+  </tr>`;
+});
+</script>
+</body>
+</html>

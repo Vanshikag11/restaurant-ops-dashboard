@@ -1,0 +1,771 @@
+{
+  "DELIVERY OPS: Avg delivery time & order volume by city": [
+    {
+      "city": "Mumbai",
+      "total_orders": 7524,
+      "avg_delivery_mins": 39.4,
+      "avg_rating": 4.2
+    },
+    {
+      "city": "Bengaluru",
+      "total_orders": 6643,
+      "avg_delivery_mins": 36.1,
+      "avg_rating": 4.23
+    },
+    {
+      "city": "Delhi NCR",
+      "total_orders": 5501,
+      "avg_delivery_mins": 34.6,
+      "avg_rating": 4.24
+    },
+    {
+      "city": "Chennai",
+      "total_orders": 3255,
+      "avg_delivery_mins": 33.5,
+      "avg_rating": 4.26
+    },
+    {
+      "city": "Hyderabad",
+      "total_orders": 3589,
+      "avg_delivery_mins": 31.3,
+      "avg_rating": 4.28
+    },
+    {
+      "city": "Pune",
+      "total_orders": 3488,
+      "avg_delivery_mins": 28.1,
+      "avg_rating": 4.28
+    }
+  ],
+  "CUISINE PERFORMANCE: order value & rating by cuisine": [
+    {
+      "cuisine": "North Indian",
+      "total_orders": 6460,
+      "avg_order_value": 421.0,
+      "total_revenue": 2717815.0,
+      "avg_delivery_mins": 35.2,
+      "avg_rating": 4.23
+    },
+    {
+      "cuisine": "Fast Food",
+      "total_orders": 7116,
+      "avg_order_value": 240.0,
+      "total_revenue": 1708089.0,
+      "avg_delivery_mins": 34.4,
+      "avg_rating": 4.25
+    },
+    {
+      "cuisine": "Biryani",
+      "total_orders": 3446,
+      "avg_order_value": 382.0,
+      "total_revenue": 1316955.0,
+      "avg_delivery_mins": 37.6,
+      "avg_rating": 4.22
+    },
+    {
+      "cuisine": "South Indian",
+      "total_orders": 4710,
+      "avg_order_value": 260.0,
+      "total_revenue": 1226514.0,
+      "avg_delivery_mins": 34.3,
+      "avg_rating": 4.25
+    },
+    {
+      "cuisine": "Chinese",
+      "total_orders": 3534,
+      "avg_order_value": 332.0,
+      "total_revenue": 1174698.0,
+      "avg_delivery_mins": 34.4,
+      "avg_rating": 4.24
+    },
+    {
+      "cuisine": "Continental",
+      "total_orders": 1786,
+      "avg_order_value": 560.0,
+      "total_revenue": 1000245.0,
+      "avg_delivery_mins": 35.0,
+      "avg_rating": 4.25
+    },
+    {
+      "cuisine": "Desserts",
+      "total_orders": 2948,
+      "avg_order_value": 191.0,
+      "total_revenue": 562613.0,
+      "avg_delivery_mins": 33.5,
+      "avg_rating": 4.24
+    }
+  ],
+  "PEAK-HOUR STRAIN: delivery time during lunch/dinner peaks vs off-peak": [
+    {
+      "time_band": "Dinner Peak",
+      "total_orders": 12552,
+      "avg_delivery_mins": 37.0
+    },
+    {
+      "time_band": "Lunch Peak",
+      "total_orders": 7022,
+      "avg_delivery_mins": 36.8
+    },
+    {
+      "time_band": "Off-Peak",
+      "total_orders": 10426,
+      "avg_delivery_mins": 30.9
+    }
+  ],
+  "CUSTOMER CHURN: customers with no order in the last 60 days": [
+    {
+      "city": "Delhi NCR",
+      "total_customers": 493,
+      "churned_customers": 138,
+      "churn_rate_pct": 28.0
+    },
+    {
+      "city": "Chennai",
+      "total_customers": 270,
+      "churned_customers": 75,
+      "churn_rate_pct": 27.8
+    },
+    {
+      "city": "Bengaluru",
+      "total_customers": 497,
+      "churned_customers": 134,
+      "churn_rate_pct": 27.0
+    },
+    {
+      "city": "Pune",
+      "total_customers": 359,
+      "churned_customers": 95,
+      "churn_rate_pct": 26.5
+    },
+    {
+      "city": "Hyderabad",
+      "total_customers": 330,
+      "churned_customers": 81,
+      "churn_rate_pct": 24.5
+    },
+    {
+      "city": "Mumbai",
+      "total_customers": 551,
+      "churned_customers": 124,
+      "churn_rate_pct": 22.5
+    }
+  ],
+  "RESTAURANT LEADERBOARD: top restaurants by revenue, with rank": [
+    {
+      "restaurant_id": "R1133",
+      "city": "Bengaluru",
+      "cuisine": "Continental",
+      "total_orders": 175,
+      "total_revenue": 96426.0,
+      "avg_rating": 4.25,
+      "city_rank": 1
+    },
+    {
+      "restaurant_id": "R1046",
+      "city": "Bengaluru",
+      "cuisine": "Continental",
+      "total_orders": 159,
+      "total_revenue": 91344.0,
+      "avg_rating": 4.18,
+      "city_rank": 2
+    },
+    {
+      "restaurant_id": "R1061",
+      "city": "Bengaluru",
+      "cuisine": "Continental",
+      "total_orders": 158,
+      "total_revenue": 90980.0,
+      "avg_rating": 4.23,
+      "city_rank": 3
+    },
+    {
+      "restaurant_id": "R1060",
+      "city": "Bengaluru",
+      "cuisine": "Continental",
+      "total_orders": 161,
+      "total_revenue": 87580.0,
+      "avg_rating": 4.28,
+      "city_rank": 4
+    },
+    {
+      "restaurant_id": "R1144",
+      "city": "Bengaluru",
+      "cuisine": "Continental",
+      "total_orders": 148,
+      "total_revenue": 82229.0,
+      "avg_rating": 4.25,
+      "city_rank": 5
+    },
+    {
+      "restaurant_id": "R1001",
+      "city": "Chennai",
+      "cuisine": "North Indian",
+      "total_orders": 206,
+      "total_revenue": 87875.0,
+      "avg_rating": 4.27,
+      "city_rank": 1
+    },
+    {
+      "restaurant_id": "R1178",
+      "city": "Chennai",
+      "cuisine": "Continental",
+      "total_orders": 151,
+      "total_revenue": 84649.0,
+      "avg_rating": 4.25,
+      "city_rank": 2
+    },
+    {
+      "restaurant_id": "R1154",
+      "city": "Chennai",
+      "cuisine": "North Indian",
+      "total_orders": 168,
+      "total_revenue": 72146.0,
+      "avg_rating": 4.2,
+      "city_rank": 3
+    },
+    {
+      "restaurant_id": "R1112",
+      "city": "Chennai",
+      "cuisine": "Biryani",
+      "total_orders": 178,
+      "total_revenue": 67366.0,
+      "avg_rating": 4.22,
+      "city_rank": 4
+    },
+    {
+      "restaurant_id": "R1050",
+      "city": "Chennai",
+      "cuisine": "Biryani",
+      "total_orders": 171,
+      "total_revenue": 65432.0,
+      "avg_rating": 4.3,
+      "city_rank": 5
+    },
+    {
+      "restaurant_id": "R1125",
+      "city": "Delhi NCR",
+      "cuisine": "Continental",
+      "total_orders": 176,
+      "total_revenue": 97340.0,
+      "avg_rating": 4.19,
+      "city_rank": 1
+    },
+    {
+      "restaurant_id": "R1103",
+      "city": "Delhi NCR",
+      "cuisine": "North Indian",
+      "total_orders": 189,
+      "total_revenue": 80403.0,
+      "avg_rating": 4.23,
+      "city_rank": 2
+    },
+    {
+      "restaurant_id": "R1119",
+      "city": "Delhi NCR",
+      "cuisine": "North Indian",
+      "total_orders": 183,
+      "total_revenue": 76669.0,
+      "avg_rating": 4.26,
+      "city_rank": 3
+    },
+    {
+      "restaurant_id": "R1054",
+      "city": "Delhi NCR",
+      "cuisine": "North Indian",
+      "total_orders": 178,
+      "total_revenue": 74987.0,
+      "avg_rating": 4.3,
+      "city_rank": 4
+    },
+    {
+      "restaurant_id": "R1153",
+      "city": "Delhi NCR",
+      "cuisine": "North Indian",
+      "total_orders": 183,
+      "total_revenue": 74790.0,
+      "avg_rating": 4.26,
+      "city_rank": 5
+    },
+    {
+      "restaurant_id": "R1067",
+      "city": "Hyderabad",
+      "cuisine": "Continental",
+      "total_orders": 158,
+      "total_revenue": 88800.0,
+      "avg_rating": 4.37,
+      "city_rank": 1
+    },
+    {
+      "restaurant_id": "R1076",
+      "city": "Hyderabad",
+      "cuisine": "Continental",
+      "total_orders": 149,
+      "total_revenue": 84134.0,
+      "avg_rating": 4.27,
+      "city_rank": 2
+    },
+    {
+      "restaurant_id": "R1120",
+      "city": "Hyderabad",
+      "cuisine": "North Indian",
+      "total_orders": 189,
+      "total_revenue": 80249.0,
+      "avg_rating": 4.32,
+      "city_rank": 3
+    },
+    {
+      "restaurant_id": "R1025",
+      "city": "Hyderabad",
+      "cuisine": "North Indian",
+      "total_orders": 147,
+      "total_revenue": 60779.0,
+      "avg_rating": 4.33,
+      "city_rank": 4
+    },
+    {
+      "restaurant_id": "R1094",
+      "city": "Hyderabad",
+      "cuisine": "Chinese",
+      "total_orders": 176,
+      "total_revenue": 59862.0,
+      "avg_rating": 4.3,
+      "city_rank": 5
+    },
+    {
+      "restaurant_id": "R1068",
+      "city": "Mumbai",
+      "cuisine": "Continental",
+      "total_orders": 173,
+      "total_revenue": 95117.0,
+      "avg_rating": 4.2,
+      "city_rank": 1
+    },
+    {
+      "restaurant_id": "R1079",
+      "city": "Mumbai",
+      "cuisine": "North Indian",
+      "total_orders": 197,
+      "total_revenue": 83169.0,
+      "avg_rating": 4.09,
+      "city_rank": 2
+    },
+    {
+      "restaurant_id": "R1029",
+      "city": "Mumbai",
+      "cuisine": "North Indian",
+      "total_orders": 187,
+      "total_revenue": 77868.0,
+      "avg_rating": 4.19,
+      "city_rank": 3
+    },
+    {
+      "restaurant_id": "R1021",
+      "city": "Mumbai",
+      "cuisine": "North Indian",
+      "total_orders": 177,
+      "total_revenue": 75479.0,
+      "avg_rating": 4.24,
+      "city_rank": 4
+    },
+    {
+      "restaurant_id": "R1117",
+      "city": "Mumbai",
+      "cuisine": "North Indian",
+      "total_orders": 179,
+      "total_revenue": 75351.0,
+      "avg_rating": 4.16,
+      "city_rank": 5
+    },
+    {
+      "restaurant_id": "R1081",
+      "city": "Pune",
+      "cuisine": "Continental",
+      "total_orders": 178,
+      "total_revenue": 101645.0,
+      "avg_rating": 4.26,
+      "city_rank": 1
+    },
+    {
+      "restaurant_id": "R1159",
+      "city": "Pune",
+      "cuisine": "North Indian",
+      "total_orders": 185,
+      "total_revenue": 77793.0,
+      "avg_rating": 4.26,
+      "city_rank": 2
+    },
+    {
+      "restaurant_id": "R1176",
+      "city": "Pune",
+      "cuisine": "North Indian",
+      "total_orders": 173,
+      "total_revenue": 73167.0,
+      "avg_rating": 4.3,
+      "city_rank": 3
+    },
+    {
+      "restaurant_id": "R1091",
+      "city": "Pune",
+      "cuisine": "Biryani",
+      "total_orders": 171,
+      "total_revenue": 66748.0,
+      "avg_rating": 4.28,
+      "city_rank": 4
+    },
+    {
+      "restaurant_id": "R1137",
+      "city": "Pune",
+      "cuisine": "North Indian",
+      "total_orders": 157,
+      "total_revenue": 66167.0,
+      "avg_rating": 4.27,
+      "city_rank": 5
+    }
+  ],
+  "MONTH-OVER-MONTH ORDER VOLUME TREND (per city)": [
+    {
+      "city": "Bengaluru",
+      "month": "2025-01",
+      "total_orders": 506,
+      "total_revenue": 180912.0,
+      "order_mom_change": null
+    },
+    {
+      "city": "Bengaluru",
+      "month": "2025-02",
+      "total_orders": 999,
+      "total_revenue": 358944.0,
+      "order_mom_change": 493
+    },
+    {
+      "city": "Bengaluru",
+      "month": "2025-03",
+      "total_orders": 1316,
+      "total_revenue": 469186.0,
+      "order_mom_change": 317
+    },
+    {
+      "city": "Bengaluru",
+      "month": "2025-04",
+      "total_orders": 1419,
+      "total_revenue": 505684.0,
+      "order_mom_change": 103
+    },
+    {
+      "city": "Bengaluru",
+      "month": "2025-05",
+      "total_orders": 1204,
+      "total_revenue": 428180.0,
+      "order_mom_change": -215
+    },
+    {
+      "city": "Bengaluru",
+      "month": "2025-06",
+      "total_orders": 1199,
+      "total_revenue": 432382.0,
+      "order_mom_change": -5
+    },
+    {
+      "city": "Chennai",
+      "month": "2025-01",
+      "total_orders": 264,
+      "total_revenue": 81834.0,
+      "order_mom_change": null
+    },
+    {
+      "city": "Chennai",
+      "month": "2025-02",
+      "total_orders": 493,
+      "total_revenue": 152558.0,
+      "order_mom_change": 229
+    },
+    {
+      "city": "Chennai",
+      "month": "2025-03",
+      "total_orders": 636,
+      "total_revenue": 205980.0,
+      "order_mom_change": 143
+    },
+    {
+      "city": "Chennai",
+      "month": "2025-04",
+      "total_orders": 665,
+      "total_revenue": 207225.0,
+      "order_mom_change": 29
+    },
+    {
+      "city": "Chennai",
+      "month": "2025-05",
+      "total_orders": 608,
+      "total_revenue": 191182.0,
+      "order_mom_change": -57
+    },
+    {
+      "city": "Chennai",
+      "month": "2025-06",
+      "total_orders": 589,
+      "total_revenue": 184724.0,
+      "order_mom_change": -19
+    },
+    {
+      "city": "Delhi NCR",
+      "month": "2025-01",
+      "total_orders": 465,
+      "total_revenue": 142783.0,
+      "order_mom_change": null
+    },
+    {
+      "city": "Delhi NCR",
+      "month": "2025-02",
+      "total_orders": 783,
+      "total_revenue": 226601.0,
+      "order_mom_change": 318
+    },
+    {
+      "city": "Delhi NCR",
+      "month": "2025-03",
+      "total_orders": 1115,
+      "total_revenue": 330830.0,
+      "order_mom_change": 332
+    },
+    {
+      "city": "Delhi NCR",
+      "month": "2025-04",
+      "total_orders": 1115,
+      "total_revenue": 326200.0,
+      "order_mom_change": 0
+    },
+    {
+      "city": "Delhi NCR",
+      "month": "2025-05",
+      "total_orders": 1038,
+      "total_revenue": 297792.0,
+      "order_mom_change": -77
+    },
+    {
+      "city": "Delhi NCR",
+      "month": "2025-06",
+      "total_orders": 985,
+      "total_revenue": 291292.0,
+      "order_mom_change": -53
+    },
+    {
+      "city": "Hyderabad",
+      "month": "2025-01",
+      "total_orders": 285,
+      "total_revenue": 88015.0,
+      "order_mom_change": null
+    },
+    {
+      "city": "Hyderabad",
+      "month": "2025-02",
+      "total_orders": 504,
+      "total_revenue": 158014.0,
+      "order_mom_change": 219
+    },
+    {
+      "city": "Hyderabad",
+      "month": "2025-03",
+      "total_orders": 703,
+      "total_revenue": 212869.0,
+      "order_mom_change": 199
+    },
+    {
+      "city": "Hyderabad",
+      "month": "2025-04",
+      "total_orders": 755,
+      "total_revenue": 233020.0,
+      "order_mom_change": 52
+    },
+    {
+      "city": "Hyderabad",
+      "month": "2025-05",
+      "total_orders": 683,
+      "total_revenue": 207951.0,
+      "order_mom_change": -72
+    },
+    {
+      "city": "Hyderabad",
+      "month": "2025-06",
+      "total_orders": 659,
+      "total_revenue": 199999.0,
+      "order_mom_change": -24
+    },
+    {
+      "city": "Mumbai",
+      "month": "2025-01",
+      "total_orders": 592,
+      "total_revenue": 195877.0,
+      "order_mom_change": null
+    },
+    {
+      "city": "Mumbai",
+      "month": "2025-02",
+      "total_orders": 1093,
+      "total_revenue": 347701.0,
+      "order_mom_change": 501
+    },
+    {
+      "city": "Mumbai",
+      "month": "2025-03",
+      "total_orders": 1510,
+      "total_revenue": 485863.0,
+      "order_mom_change": 417
+    },
+    {
+      "city": "Mumbai",
+      "month": "2025-04",
+      "total_orders": 1588,
+      "total_revenue": 524311.0,
+      "order_mom_change": 78
+    },
+    {
+      "city": "Mumbai",
+      "month": "2025-05",
+      "total_orders": 1403,
+      "total_revenue": 449344.0,
+      "order_mom_change": -185
+    },
+    {
+      "city": "Mumbai",
+      "month": "2025-06",
+      "total_orders": 1338,
+      "total_revenue": 437281.0,
+      "order_mom_change": -65
+    },
+    {
+      "city": "Pune",
+      "month": "2025-01",
+      "total_orders": 275,
+      "total_revenue": 91865.0,
+      "order_mom_change": null
+    },
+    {
+      "city": "Pune",
+      "month": "2025-02",
+      "total_orders": 509,
+      "total_revenue": 165591.0,
+      "order_mom_change": 234
+    },
+    {
+      "city": "Pune",
+      "month": "2025-03",
+      "total_orders": 729,
+      "total_revenue": 243828.0,
+      "order_mom_change": 220
+    },
+    {
+      "city": "Pune",
+      "month": "2025-04",
+      "total_orders": 727,
+      "total_revenue": 238084.0,
+      "order_mom_change": -2
+    },
+    {
+      "city": "Pune",
+      "month": "2025-05",
+      "total_orders": 638,
+      "total_revenue": 209915.0,
+      "order_mom_change": -89
+    },
+    {
+      "city": "Pune",
+      "month": "2025-06",
+      "total_orders": 610,
+      "total_revenue": 203111.0,
+      "order_mom_change": -28
+    }
+  ],
+  "LATE-DELIVERY RISK FLAG: orders that took >99th-percentile-equivalent long": [
+    {
+      "restaurant_id": "R1079",
+      "total_orders": 197,
+      "sla_breaches": 42,
+      "breach_rate_pct": 21.3
+    },
+    {
+      "restaurant_id": "R1111",
+      "total_orders": 166,
+      "sla_breaches": 30,
+      "breach_rate_pct": 18.1
+    },
+    {
+      "restaurant_id": "R1090",
+      "total_orders": 166,
+      "sla_breaches": 30,
+      "breach_rate_pct": 18.1
+    },
+    {
+      "restaurant_id": "R1041",
+      "total_orders": 157,
+      "sla_breaches": 26,
+      "breach_rate_pct": 16.6
+    },
+    {
+      "restaurant_id": "R1138",
+      "total_orders": 164,
+      "sla_breaches": 26,
+      "breach_rate_pct": 15.9
+    },
+    {
+      "restaurant_id": "R1105",
+      "total_orders": 157,
+      "sla_breaches": 23,
+      "breach_rate_pct": 14.6
+    },
+    {
+      "restaurant_id": "R1032",
+      "total_orders": 168,
+      "sla_breaches": 24,
+      "breach_rate_pct": 14.3
+    },
+    {
+      "restaurant_id": "R1152",
+      "total_orders": 171,
+      "sla_breaches": 23,
+      "breach_rate_pct": 13.5
+    },
+    {
+      "restaurant_id": "R1029",
+      "total_orders": 187,
+      "sla_breaches": 25,
+      "breach_rate_pct": 13.4
+    },
+    {
+      "restaurant_id": "R1096",
+      "total_orders": 169,
+      "sla_breaches": 21,
+      "breach_rate_pct": 12.4
+    },
+    {
+      "restaurant_id": "R1014",
+      "total_orders": 153,
+      "sla_breaches": 16,
+      "breach_rate_pct": 10.5
+    },
+    {
+      "restaurant_id": "R1117",
+      "total_orders": 179,
+      "sla_breaches": 18,
+      "breach_rate_pct": 10.1
+    },
+    {
+      "restaurant_id": "R1145",
+      "total_orders": 158,
+      "sla_breaches": 15,
+      "breach_rate_pct": 9.5
+    },
+    {
+      "restaurant_id": "R1006",
+      "total_orders": 174,
+      "sla_breaches": 16,
+      "breach_rate_pct": 9.2
+    },
+    {
+      "restaurant_id": "R1136",
+      "total_orders": 174,
+      "sla_breaches": 14,
+      "breach_rate_pct": 8.0
+    }
+  ]
+}
