@@ -57,5 +57,4 @@ sqlite3 food_delivery.db < setup.sql   # or load the CSVs directly with pandas.t
 open dashboard.html   # or just double-click it
 ```
 
-nce
-it's 
+
