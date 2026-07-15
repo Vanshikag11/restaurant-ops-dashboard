@@ -4,7 +4,7 @@ A SQL + pandas analytics project on food-delivery order data (Zomato/Swiggy-styl
 built to answer the questions an ops/MIS analyst would actually be asked:
 *where are we slow, who's churning, and which restaurants need attention.*
 
-**[View the live dashboard →](dashboard.html)**
+**[View the live dashboard →](https://vanshikag11.github.io/restaurant-ops-dashboard/dashboard.html)**
 
 ## Business questions answered
 
