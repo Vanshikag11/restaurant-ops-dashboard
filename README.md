@@ -57,11 +57,5 @@ sqlite3 food_delivery.db < setup.sql   # or load the CSVs directly with pandas.t
 open dashboard.html   # or just double-click it
 ```
 
-## Notes on the data
-
-This uses a **synthetic dataset** (public food-delivery data isn't freely available at
-this granularity), generated with intentional, realistic patterns baked in — not random
-noise — so the SQL/analysis has real signal to find: city-level traffic differences,
-cuisine price tiers, peak-hour slowdowns, and a churn curve driven by signup recency.
-The methodology (embed real patterns, then analyze) is called out here deliberately, since
-it's a reasonable thing to be asked about in an interview.
+nce
+it's 
